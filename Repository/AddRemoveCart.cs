@@ -52,20 +52,20 @@ namespace OnlineShoping.Repository
             
         }
 
-        public async Task<Cart> RemovefromCart(int crt_int_Id)
+        public async Task<bool> RemovefromCart(int crt_int_Id)
         {
             var cart = await _dbcontext.Carts.FirstOrDefaultAsync(c => c.crt_int_Id == crt_int_Id);
 
 
             if (cart == null)
             {
-                return null;
+                return false;
 
             }
 
             _dbcontext.Carts.Remove(cart);
             await _dbcontext.SaveChangesAsync();
-            return cart;
+            return true;
         }
     }
 }
