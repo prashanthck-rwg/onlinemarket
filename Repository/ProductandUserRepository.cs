@@ -35,8 +35,12 @@ namespace OnlineShoping.Repository
 
         public async Task<User> UserLogin(string usr_username, string usr_password)
         {
-          return await _dbcontext.Users.FirstOrDefaultAsync(u => u.usr_username == usr_username && u.usr_password == usr_password);
-
+            var user = await _dbcontext.Users.FirstOrDefaultAsync(u => u.usr_username == usr_username && u.usr_password == usr_password);
+            if (user == null) 
+            {   
+                return null;
+            }
+            return user;
         }
 
         public async Task<Product> CreateProduct(Product prod)
@@ -74,7 +78,7 @@ namespace OnlineShoping.Repository
 
         public async Task<User> GetuserbyId(int usr_int_id)
         {
-            return await _dbcontext.Users.FirstOrDefaultAsync(p => p.usr_int_id == usr_int_id);
+            return await _dbcontext.Users.FindAsync(usr_int_id);
         }
     }
 

@@ -20,7 +20,7 @@ namespace OnlineShoping.Controller
         }
 
         [HttpPost("Addcart")]
-        public async IActionResult Addcart([FromBody] Cart cart)
+        public async Task<IActionResult> Addcart([FromBody] Cart cart)
         {
             if(cart == null)
             {
@@ -29,36 +29,46 @@ namespace OnlineShoping.Controller
 
            var result = await _addCartandRemoveCart.AddtoCart(cart);
 
-            if( result != null)
-            
-              return Ok("Cart added");     
+            if( result == null)
+
+                return BadRequest("Failed to add cart.");
+
+            return Ok("Cart added successfully");     
         }
 
         [HttpPost("Get")]
 
-        public async IActionResult GetCartbyUsrid(int usr_int_id)
+        public async Task<IActionResult> GetCartbyUsrid(int usr_int_id)
         {
-            if(usr_int_id == null)
+            if(usr_int_id <= 0)
             {
                 return BadRequest("Invalid Data");
             }
-            await _addCartandRemoveCart.GetCartByUserId(usr_int_id);
+            var cartdata =  await _addCartandRemoveCart.GetCartByUserId(usr_int_id);
+            if(cartdata == null) 
+            { 
+                return NotFound("Cart not found.");
+            }
 
-            return Ok();
+            return Ok(cartdata);
         }
 
         [HttpDelete("RemoveCart")]
-
-        public async IActionResult RemoveCart(int usr_int_id)
+        public async Task<IActionResult> RemoveCart(int usr_int_id)
         {
-            if (usr_int_id == null)
+            if (usr_int_id <= 0)
             {
-                return BadRequest("Invalid Data");
+                return BadRequest("Invalid User ID.");
             }
-            await _addCartandRemoveCart.RemovefromCart(usr_int_id);
 
-            return Ok();
+            var isRemoved = await _addCartandRemoveCart.RemovefromCart(usr_int_id);
 
+            if (!isRemoved)
+            {
+                return NotFound("Cart not found or already removed.");
+            }
+
+            return Ok("Cart removed successfully.");
         }
     }
 }

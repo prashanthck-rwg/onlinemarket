@@ -27,7 +27,7 @@ namespace OnlineShoping.Controller
 
         [HttpPost("Register")]
 
-        public async Task UserCreation([FromBody] User userobject)
+        public async Task<IActionResult> UserCreation([FromBody] User userobject)
         {
             if (userobject == null || string.IsNullOrEmpty(userobject.usr_username))
             {
@@ -41,7 +41,7 @@ namespace OnlineShoping.Controller
         }
 
         [HttpPost("Login")] 
-        public async Task UserLogins(string usr_username, string usr_password)
+        public async Task<IActionResult> UserLogins(string usr_username, string usr_password)
         {
             if (string.IsNullOrEmpty(usr_username) || string.IsNullOrEmpty(usr_password))
             {
@@ -49,15 +49,15 @@ namespace OnlineShoping.Controller
             }
            var result = await _productanduser.Logincheck(usr_username, usr_password);
 
-            if (result != null)
+            if (result == null)
             {
-
-                return Ok(new { message = "Logged in successfully" });
+                return Unauthorized(new { message = "Invalid username or password" });         
             }
+            return Ok(new { message = "Logged in successfully" });
         }
 
         [HttpPost("AddProduct")]
-        public async Task AddProducts(Product prod)
+        public async Task<IActionResult> AddProducts([FromBody]Product prod)
         {
             if (prod == null) 
             {
@@ -70,7 +70,7 @@ namespace OnlineShoping.Controller
 
         [HttpPost("AddDiscount")]
 
-        public async Task CreateDiscount(Discount disc)
+        public async Task<IActionResult> CreateDiscount(Discount disc)
         {
             if(disc == null)
             {
@@ -78,7 +78,7 @@ namespace OnlineShoping.Controller
             }
             await _productandUserInterface.AddDiscount(disc).ConfigureAwait(false);
 
-            return Ok(new { message = "Product added" });
+            return Ok(new { message = "Discount added" });
         }
 
     }

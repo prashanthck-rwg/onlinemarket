@@ -16,9 +16,12 @@ namespace OnlineShoping.Repository
         }
         public async Task<Cart> AddtoCart(Cart cartInfo)
         {
-            var carttotal = await _dbcontext.Products.Select(p => new { Amount = p.Prod_mny_Price - p.Prod_int_DiscId }).ToList();
+           // var carttotal = await _dbcontext.Products.Select(p => new { Amount = p.Prod_mny_Price - p.Prod_int_DiscId }).ToList();
 
-            var carttotal = await(from prd in _dbcontext.Products where prd.Prod_int_ID = cartInfo.crt_int_prod_id  Select(p => new { Amount = p.Prod_mny_Price - p.Prod_int_DiscId }).ToList();
+            var carttotal = await _dbcontext.Products
+                .Where(prd => prd.Prod_int_ID == cartInfo.crt_int_prod_id)
+                .Select(p => p.Prod_mny_Price - p.Prod_int_DiscId)
+                .FirstOrDefaultAsync();
 
             Cart NewCart = new Cart
             {
@@ -38,19 +41,33 @@ namespace OnlineShoping.Repository
             return NewCart;
         }
 
+
         public async Task<Cart> GetCartByUserId(int crt_int_usrid)
         {
-            var user =  _dbcontext.Carts.Any(p => p.crt_int_Id == crt_int_usrid);
-
-            if (user == null)
+            var userExists = await _dbcontext.Carts.AnyAsync(p => p.crt_int_usrid == crt_int_usrid);
+            if (!userExists)
             {
                 return null;
             }
 
-           return await _dbcontext.Carts.Where(p => p.crt_int_usrid == crt_int_usrid).FirstOrDefaultAsync();
-
-            
+            return await _dbcontext.Carts
+                .Where(p => p.crt_int_usrid == crt_int_usrid)
+                .FirstOrDefaultAsync();
         }
+
+
+        //public async Task<Cart> GetCartByUserId(int crt_int_usrid)
+        //{
+        //    var user =  _dbcontext.Carts.Any(p => p.crt_int_Id == crt_int_usrid);
+
+        //    if (user == null)
+        //    {
+        //        return null;
+        //    }
+
+        //   return await _dbcontext.Carts.Where(p => p.crt_int_usrid == crt_int_usrid).FirstOrDefaultAsync()
+
+        //}
 
         public async Task<bool> RemovefromCart(int crt_int_Id)
         {
@@ -60,7 +77,7 @@ namespace OnlineShoping.Repository
             if (cart == null)
             {
                 return false;
-
+                    
             }
 
             _dbcontext.Carts.Remove(cart);

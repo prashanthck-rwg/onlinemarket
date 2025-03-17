@@ -7,7 +7,6 @@ namespace OnlineShoping.RepositoryInterface
     {
         Task<Paymentdetail> AddPaymentDetails(OrderplaceModel orderplaceModel);
         Task<Orderdetail> CreateOrderDetails(OrderplaceModel orderplaceModel);
-        Task<Orderitem> CreateOrderItems(OrderplaceModel orderplaceModel);
 
     }
 }

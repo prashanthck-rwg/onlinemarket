@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
-using OnlineShoping.Models;
+﻿using OnlineShoping.Models;
 using OnlineShoping.Repository;
 
 namespace OnlineShoping.Service
@@ -17,11 +16,9 @@ namespace OnlineShoping.Service
         {
           var result = await _productandUserRepository.UserLogin(usr_username, usr_password);
 
-            if (result.usr_username! = usr_username || result.usr_password! = usr_password)
-
-
+            if (result == null || result.usr_username != usr_username || result.usr_password != usr_password)
             {
-                return BadRequest("Username or Pwd is wrong");
+                return null; // Let controller handle the error
             }
 
             return result;  

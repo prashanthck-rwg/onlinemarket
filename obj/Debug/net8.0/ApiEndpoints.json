@@ -1,5 +1,138 @@
 [
   {
+    "ContainingType": "OnlineShoping.Controller.AddRemoveCartController",
+    "Method": "Addcart",
+    "RelativePath": "api/AddRemoveCart/Addcart",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cart",
+        "Type": "OnlineShoping.Models.Cart",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OnlineShoping.Controller.AddRemoveCartController",
+    "Method": "GetCartbyUsrid",
+    "RelativePath": "api/AddRemoveCart/Get",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usr_int_id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OnlineShoping.Controller.AddRemoveCartController",
+    "Method": "RemoveCart",
+    "RelativePath": "api/AddRemoveCart/RemoveCart",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usr_int_id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OnlineShoping.Controller.OrderplaceController",
+    "Method": "SavePayment",
+    "RelativePath": "api/Orderplace",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orderplace",
+        "Type": "OnlineShoping.ServiceModels.OrderplaceModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OnlineShoping.Controller.ProductandUserController",
+    "Method": "CreateDiscount",
+    "RelativePath": "api/ProductandUser/AddDiscount",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "disc",
+        "Type": "OnlineShoping.Models.Discount",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OnlineShoping.Controller.ProductandUserController",
+    "Method": "AddProducts",
+    "RelativePath": "api/ProductandUser/AddProduct",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "prod",
+        "Type": "OnlineShoping.Models.Product",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OnlineShoping.Controller.ProductandUserController",
+    "Method": "UserLogins",
+    "RelativePath": "api/ProductandUser/Login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usr_username",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "usr_password",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OnlineShoping.Controller.ProductandUserController",
+    "Method": "UserCreation",
+    "RelativePath": "api/ProductandUser/Register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userobject",
+        "Type": "OnlineShoping.Models.User",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "OnlineShoping.Controllers.WeatherForecastController",
     "Method": "Get",
     "RelativePath": "WeatherForecast",
