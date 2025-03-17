@@ -63,16 +63,5 @@ namespace OnlineShoping.Repository
             return SaveOrderDetails;
         }
 
-        public Task<Orderitem> CreateOrderItems(OrderplaceModel orderplaceModel)
-        {
-            Orderitem Saveorderitems = new Orderitem
-            {
-                ord_int_orderdetailid = prod.ord_int_orderdetailid,
-                ord_product_id = 
-                ord_created_at
-                ord_modified_at
-
-            }
-        }
     }
 }

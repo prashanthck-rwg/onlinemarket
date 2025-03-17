@@ -135,3 +135,4 @@ C:\CSharp Projects\OnlineShoping\obj\Debug\net8.0\refint\OnlineShoping.dll
 C:\CSharp Projects\OnlineShoping\obj\Debug\net8.0\OnlineShoping.pdb
 C:\CSharp Projects\OnlineShoping\obj\Debug\net8.0\OnlineShoping.genruntimeconfig.cache
 C:\CSharp Projects\OnlineShoping\obj\Debug\net8.0\ref\OnlineShoping.dll
+C:\CSharp Projects\OnlineShoping\obj\Debug\net8.0\OnlineShoping.sourcelink.json
